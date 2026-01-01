@@ -1,0 +1,110 @@
+.edit-profile-page {
+  min-height: 100vh;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-profile-card {
+  width: 460px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.edit-profile-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* PROFILE IMAGE */
+.profile-image-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-image-section img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #2563eb;
+}
+
+.change-photo-btn {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #2563eb;
+  cursor: pointer;
+}
+
+.change-photo-btn:hover {
+  text-decoration: underline;
+}
+
+/* FORM */
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+.form-group input:disabled {
+  background: #e5e7eb;
+}
+
+/* ERROR */
+.error-text {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* BUTTONS */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.save-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background: #1d4ed8;
+}
+
+.cancel-btn {
+  background: #e5e7eb;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}

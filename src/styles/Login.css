@@ -1,0 +1,108 @@
+/* 🌈 Animated Gradient Background */
+.auth-bg {
+  background: linear-gradient(
+    -45deg,
+    #22c55e,
+    #38bdf8,
+    #a855f7,
+    #22c55e
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gradient Animation */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 💫 Floating Blur Circles */
+.auth-bg::before,
+.auth-bg::after {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  background: rgba(255, 255, 255, 0.25);
+  filter: blur(80px);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite alternate;
+}
+
+.auth-bg::before {
+  top: 10%;
+  left: 10%;
+}
+
+.auth-bg::after {
+  bottom: 10%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+/* Floating animation */
+@keyframes float {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(30px);
+  }
+}
+
+/* 🧊 Glassmorphism Card */
+.auth-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Inputs */
+.auth-input {
+  border-radius: 10px;
+  padding: 12px;
+}
+
+/* Button */
+.auth-btn {
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 600;
+}
+
+/* Title animation */
+.auth-title {
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Signup hover */
+.signup-link:hover {
+  text-decoration: underline;
+}
