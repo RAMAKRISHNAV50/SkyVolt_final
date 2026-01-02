@@ -10,11 +10,11 @@
 .dashboard-header {
   text-align: center;
   font-weight: 700;
-  color: white;
+  color: black;
   padding: 14px;
   border-radius: 12px;
   margin-bottom: 24px;
-  background: linear-gradient(90deg, #22c55e, #2563eb);
+  background: #05f762b9;
 }
 
 /* GRIDS */
@@ -82,13 +82,13 @@
 }
 
 /* COLORS */
-.blue { background: linear-gradient(135deg, #2563eb, #60a5fa); color: white; }
-.green { background: linear-gradient(135deg, #22c55e, #4ade80); color: white; }
-.purple { background: linear-gradient(135deg, #7c3aed, #a78bfa); color: white; }
-.orange { background: linear-gradient(135deg, #f97316, #fdba74); color: white; }
-.red { background: linear-gradient(135deg, #ef4444, #fca5a5); color: white; }
-.teal { background: linear-gradient(135deg, #14b8a6, #5eead4); color: white; }
-.indigo { background: linear-gradient(135deg, #4f46e5, #818cf8); color: white; }
+.blue { background: #05c3f7b9}
+ .green { background: #05c3f7b9 }
+.purple { background: #05c3f7b9 }
+.orange { background: #05c3f7b9 }
+.red { background: #05c3f7b9 }
+.teal { background: #05c3f7b9}
+.indigo { background: #05c3f7b9 } 
 
 /* MOBILE */
 @media (max-width: 768px) {
