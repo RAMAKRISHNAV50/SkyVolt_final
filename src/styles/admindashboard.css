@@ -1,4 +1,4 @@
-/* ================= ROOT ================= */
+/*========== ROOT ================= */
 .dashboard {
   padding: 20px;
   background: linear-gradient(135deg, #eef2ff, #f5f3ff);
@@ -161,4 +161,14 @@ tbody tr:hover {
 
 .scatter-card canvas {
   height: 350px !important;
+}
+.gauge-center-text {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  height: 300;
+  transform: translateX(-50%);
+  font-size: 18px;
+  font-weight: 700;
+  color: #16a34a;
 }

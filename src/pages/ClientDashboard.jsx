@@ -1,238 +1,3 @@
-// import React, { useMemo } from "react";
-// import { useAuth } from "../auth/AuthContext";
-// import windSensorData from "../data/windSensorData";
-
-// import {
-//   Chart as ChartJS,
-//   ArcElement,
-//   BarElement,
-//   CategoryScale,
-//   LinearScale,
-//   Tooltip,
-//   Legend
-// } from "chart.js";
-
-// import { Bar, Doughnut } from "react-chartjs-2";
-
-// /* REGISTER CHARTS */
-// ChartJS.register(
-//   ArcElement,
-//   BarElement,
-//   CategoryScale,
-//   LinearScale,
-//   Tooltip,
-//   Legend
-// );
-
-// const ClientDashboard = () => {
-//   const { user } = useAuth();
-
-//   /* ================= USER DATA ================= */
-//   const userData = useMemo(
-//     () => windSensorData.filter(d => d.user_email === user?.email),
-//     [user]
-//   );
-
-//   const userInfo = userData[0] || {};
-
-//   /* ================= KPI ================= */
-//   const kpis = useMemo(() => ({
-//     powerInput: userData.reduce(
-//       (s, d) => s + (Number(d["power_per_turbine(KW)"]) || 0),
-//       0
-//     ),
-//     powerOutput: userData.reduce(
-//       (s, d) => s + (Number(d.Power_Output_kW) || 0),
-//       0
-//     ),
-//     turbines: userData.reduce(
-//       (s, d) => s + (Number(d.no_turbine) || 0),
-//       0
-//     )
-//   }), [userData]);
-
-//   /* ================= TPC vs LOSS ================= */
-//   const tpcLoss = useMemo(() => ({
-//     tpc: userData.reduce(
-//       (s, d) => s + (Number(d["Theoretical_Power_Curve (KWh)"]) || 0),
-//       0
-//     ),
-//     loss: userData.reduce(
-//       (s, d) => s + (Number(d.power_loss) || 0),
-//       0
-//     )
-//   }), [userData]);
-
-//   /* ================= WIND SPEED ================= */
-//   const windSpeedMap = useMemo(() => {
-//     const map = {};
-//     userData.forEach(d => {
-//       const key = d.wind_speed_category || "Unknown";
-//       map[key] = (map[key] || 0) + (Number(d["Wind_Speed (m/s)"]) || 0);
-//     });
-//     return map;
-//   }, [userData]);
-
-//   /* ================= WIND DIRECTION ================= */
-//   const directionMap = useMemo(() => {
-//     const map = {};
-//     userData.forEach(d => {
-//       const key = d.wind_direction_category || "Unknown";
-//       map[key] = (map[key] || 0) + (Number(d.no_turbine) || 0);
-//     });
-//     return map;
-//   }, [userData]);
-
-//   /* ================= AVG POWER BY SECTOR & STATE ================= */
-//   const powerBySectorState = useMemo(() => {
-//     const map = {};
-//     userData.forEach(d => {
-//       const key = `${d.Sector}-${d.State}`;
-//       if (!map[key]) map[key] = { label: key, sum: 0, count: 0 };
-//       map[key].sum += Number(d.Power_Output_kW) || 0;
-//       map[key].count++;
-//     });
-//     return Object.values(map);
-//   }, [userData]);
-
-//   return (
-//     <div className="dashboard-wrapper">
-//       <h3 className="dashboard-header">USER DASHBOARD</h3>
-
-//       {/* USER INFO */}
-//       <div className="grid-2">
-//         <div className="equal-card blue">
-//           <p>User ID</p>
-//           <b>{userInfo.User_ID}</b>
-//         </div>
-//         <div className="equal-card green">
-//           <p>User Name</p>
-//           <b>{userInfo.User_Name}</b>
-//         </div>
-//       </div>
-
-//       {/* KPI */}
-//       <div className="grid-5">
-//         <div className="equal-card purple">
-//           <p>Power Input (kW)</p>
-//           <b>{kpis.powerInput.toFixed(2)}</b>
-//         </div>
-//         <div className="equal-card orange">
-//           <p>Power Output (kW)</p>
-//           <b>{kpis.powerOutput.toFixed(2)}</b>
-//         </div>
-//         <div className="equal-card red">
-//           <p>Total Turbines</p>
-//           <b>{Math.round(kpis.turbines)}</b>
-//         </div>
-//         <div className="equal-card teal">
-//           <p>State</p>
-//           <b>{userInfo.State}</b>
-//         </div>
-//         <div className="equal-card indigo">
-//           <p>City</p>
-//           <b>{userInfo.City}</b>
-//         </div>
-//       </div>
-
-//       {/* CHARTS */}
-//       <div className="grid-3">
-//         <div className="equal-card white">
-//           <h6>TPC vs Power Loss</h6>
-//           <Bar
-//             data={{
-//               labels: ["Theoretical Power Curve", "Power Loss"],
-//               datasets: [{
-//                 data: [tpcLoss.tpc, tpcLoss.loss],
-//                 backgroundColor: ["#2563eb", "#ef4444"]
-//               }]
-//             }}
-//             options={{
-//               responsive: true,
-//               maintainAspectRatio: false,
-//               scales: { y: { beginAtZero: true } }
-//             }}
-//           />
-//         </div>
-
-//         <div className="equal-card white">
-//           <h6>Wind Speed Category</h6>
-//           <Bar
-//             data={{
-//               labels: Object.keys(windSpeedMap),
-//               datasets: [
-//                 {
-//                   label: "Total Wind Speed (m/s)",
-//                   data: Object.values(windSpeedMap),
-//                   backgroundColor: [
-//                     "#22c55e",
-//                     "#3b82f6",
-//                     "#f97316",
-//                     "#a855f7",
-//                     "#ef4444"
-//                   ],
-//                   borderRadius: 8
-//                 }
-//               ]
-//             }}
-//             options={{
-//               responsive: true,
-//               maintainAspectRatio: false,
-//               indexAxis: "y", // ✅ horizontal bar
-//               scales: {
-//                 x: { beginAtZero: true }
-//               },
-//               plugins: {
-//                 legend: { display: false }
-//               }
-//             }}
-//           />
-//         </div>
-//         <div className="equal-card white">
-//           <h6>Wind Direction vs Turbines</h6>
-//           <Bar
-//             data={{
-//               labels: Object.keys(directionMap),
-//               datasets: [{
-//                 data: Object.values(directionMap),
-//                 backgroundColor: "#38bdf8"
-//               }]
-//             }}
-//             options={{
-//               responsive: true,
-//               maintainAspectRatio: false,
-//               scales: { y: { beginAtZero: true } }
-//             }}
-//           />
-//         </div>
-//       </div>
-
-//       {/* REDUCED WIDTH CHART */}
-//       <div className="grid-center">
-//         <div className="equal-card white medium-width">
-//           <h6>Avg Power Output by Sector & State</h6>
-//           <Bar
-//             data={{
-//               labels: powerBySectorState.map(d => d.label),
-//               datasets: [{
-//                 data: powerBySectorState.map(d => d.sum / d.count),
-//                 backgroundColor: "#6366f1"
-//               }]
-//             }}
-//             options={{
-//               responsive: true,
-//               maintainAspectRatio: false,
-//               scales: { y: { beginAtZero: true } }
-//             }}
-//           />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ClientDashboard;
-
 import React, { useMemo } from "react";
 import { useAuth } from "../auth/AuthContext";
 import windSensorData from "../data/windSensorData";
@@ -251,7 +16,7 @@ import {
 
 import { Bar, Line, Doughnut } from "react-chartjs-2";
 
-/* REGISTER */
+/* ================= REGISTER ================= */
 ChartJS.register(
   ArcElement,
   BarElement,
@@ -272,22 +37,24 @@ const ClientDashboard = () => {
     [user]
   );
 
-  const userInfo = userData[0] || {};
-
   /* ================= KPI ================= */
-  const kpis = useMemo(() => ({
-    powerInput: userData.reduce((s, d) => s + (+d["power_per_turbine(KW)"] || 0), 0),
-    powerOutput: userData.reduce((s, d) => s + (+d.Power_Output_kW || 0), 0),
-    turbines: userData.reduce((s, d) => s + (+d.no_turbine || 0), 0)
-  }), [userData]);
+  const kpis = useMemo(() => {
+    const powerPerTurbine =
+      userData.reduce((s, d) => s + (+d["power_per_turbine(KW)"] || 0), 0);
 
-  /* ================= AVERAGES FOR GAUGES ================= */
+    return {
+      powerPerTurbine,
+      totalPower: userData.reduce((s, d) => s + (+d.Power_Output_kW || 0), 0),
+      totalTurbines: userData.reduce((s, d) => s + (+d.no_turbine || 0), 0),
+      cost: powerPerTurbine * 3.4 // ✅ NEW KPI
+    };
+  }, [userData]);
+
+
+  /* ================= GAUGE VALUES ================= */
   const avgGeneratorRPM = useMemo(() => {
     if (!userData.length) return 0;
-    return Math.round(
-      userData.reduce((s, d) => s + (+d.Generator_Speed_RPM || 0), 0) /
-      userData.length
-    );
+    return Math.round(userData.reduce((s, d) => s + (+d.Generator_Speed_RPM || 0), 0) / userData.length);
   }, [userData]);
 
   const avgWindSpeed = useMemo(() => {
@@ -297,9 +64,6 @@ const ClientDashboard = () => {
       userData.length
     ).toFixed(1);
   }, [userData]);
-
-  const MAX_RPM = 2000;
-  const MAX_WIND = 30;
 
   /* ================= TPC & LOSS BY SECTOR ================= */
   const tpcLossBySector = useMemo(() => {
@@ -324,18 +88,19 @@ const ClientDashboard = () => {
   }, [userData]);
 
   /* ================= AVG POWER BY SECTOR ================= */
-  const avgPower = useMemo(() => {
-    const agri = [], res = [];
+  const avgPowerBySector = useMemo(() => {
+    const map = {};
     userData.forEach(d => {
-      const v = (+d.Power_Output_kW || 0);
-      if (d.Sector === "Agriculture") agri.push(v);
-      if (d.Sector === "Residential") res.push(v);
+      const s = d.Sector || "Unknown";
+      const p = +d.Power_Output_kW || 0;
+      if (!map[s]) map[s] = { sum: 0, count: 0 };
+      map[s].sum += p;
+      map[s].count++;
     });
-    const avg = arr => arr.length ? arr.reduce((a,b)=>a+b,0)/arr.length : 0;
-    return {
-      Agriculture: avg(agri),
-      Residential: avg(res)
-    };
+    return Object.entries(map).map(([sector, v]) => ({
+      sector,
+      avg: v.sum / v.count
+    }));
   }, [userData]);
 
   /* ================= TABLE DATA ================= */
@@ -356,26 +121,29 @@ const ClientDashboard = () => {
     });
     return Object.values(map).map(d => ({
       ...d,
-      plantNames: Array.from(d.plants).join(", ")
+      plantNames: [...d.plants].join(", ")
     }));
   }, [userData]);
+  /* ================= DASHBOARD TITLE ================= */
+  const dashboardTitle = useMemo(() => {
+    if (!userData.length) return "Dashboard";
+    return `${userData[0].User_Name} Dashboard`;
+  }, [userData]);
 
-  /* ================= GAUGE COMPONENT (SMALL) ================= */
-  const Gauge = ({ value, max, label, unit, color }) => {
-    const percent = Math.min((value / max) * 100, 100);
 
-    return (
-      <div className="equal-card white" style={{ height: 200, position: "relative" }}>
-        <h6 style={{ textAlign: "center" }}>{label}</h6>
+  /* ================= GAUGE ================= */
+  const Gauge = ({ value, max, label, unit, color }) => (
+    <div className="equal-card white" style={{ height: 180 }}>
+      <h6 className="text-center mb-1">{label}</h6>
 
+      <div style={{ height: 120, position: "relative" }}>
         <Doughnut
           data={{
-            labels: ["Value", "Remaining"],
             datasets: [{
-              data: [value, max - value],
+              data: [value, Math.max(max - value, 0)],
               backgroundColor: [color, "#e5e7eb"],
               borderWidth: 0,
-              cutout: "70%"
+              cutout: "65%"
             }]
           }}
           options={{
@@ -383,47 +151,53 @@ const ClientDashboard = () => {
             maintainAspectRatio: false,
             circumference: 180,
             rotation: 270,
-            plugins: {
-              legend: { display: false },
-              tooltip: {
-                enabled: true,
-                callbacks: {
-                  label: ctx =>
-                    ctx.dataIndex === 0
-                      ? `${label}: ${value} ${unit}`
-                      : ""
-                }
-              }
-            }
+            plugins: { legend: { display: false } }
           }}
         />
 
         <div
           style={{
             position: "absolute",
-            bottom: "18%",
+            bottom: 10,
             left: "50%",
             transform: "translateX(-50%)",
-            fontWeight: "bold",
-            fontSize: "1.1rem"
+            fontWeight: 600
           }}
         >
           {value} {unit}
         </div>
       </div>
-    );
-  };
+    </div>
+  );
 
   return (
     <div className="dashboard-wrapper">
-      <h3 className="dashboard-header">USER DASHBOARD</h3>
+      <h3 className="dashboard-header">{dashboardTitle}</h3>
 
-      {/* KPI */}
+
       <div className="grid-5">
-        <div className="equal-card purple"><p>Power / Turbine</p><b>{kpis.powerInput.toFixed(2)}</b></div>
-        <div className="equal-card orange"><p>Total Power</p><b>{kpis.powerOutput.toFixed(2)}</b></div>
-        <div className="equal-card red"><p>Total Turbines</p><b>{kpis.turbines}</b></div>
+        <div className="equal-card purple">
+          <p>Power (per single Turbine)KW</p>
+          <b>{kpis.powerPerTurbine.toFixed(2)}</b>
+        </div>
+
+        <div className="equal-card orange">
+          <p>Total Power(all turbines)</p>
+          <b>{kpis.totalPower.toFixed(2)}</b>
+        </div>
+
+        <div className="equal-card red">
+          <p>Total Turbines</p>
+          <b>{kpis.totalTurbines}</b>
+        </div>
+
+        {/* ✅ NEW KPI CARD */}
+        <div className="equal-card green">
+          <p>Cost(per single turbine)</p>
+          <b>₹ {kpis.cost.toFixed(2)}</b>
+        </div>
       </div>
+
 
       {/* CHARTS */}
       <div className="grid-3">
@@ -454,49 +228,38 @@ const ClientDashboard = () => {
           />
         </div>
 
-        {/* ✅ AVG POWER OUTPUT – FULLY DYNAMIC */}
-<div className="equal-card white">
-  <h6>Avg Power Output by Sector</h6>
-
-  <Bar
-    data={{
-      labels: Object.keys(avgPower),
-      datasets: [
-        {
-          label: "Average Power Output (kW)",
-          data: Object.values(avgPower),
-          backgroundColor: [
-            "#22c55e", // Agriculture
-            "#2563eb"  // Residential
-          ]
-        }
-      ]
-    }}
-    options={{
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        y: { beginAtZero: true }
-      },
-      plugins: {
-        tooltip: {
-          callbacks: {
-            label: ctx =>
-              `${ctx.label}: ${ctx.parsed.y.toFixed(2)} kW`
-          }
-        }
-      }
-    }}
-  />
-</div>
-
+        <div className="equal-card white">
+          <h6>Avg Power Output by Sector</h6>
+          <Bar
+            data={{
+              labels: avgPowerBySector.map(d => d.sector),
+              datasets: [{
+                label: "Avg Power (kW)",
+                data: avgPowerBySector.map(d => d.avg),
+                backgroundColor: "#22c55e"
+              }]
+            }}
+          />
+        </div>
       </div>
 
-      {/* TABLE */}
-      <div className="grid-center">
-        <div className="equal-card white medium-width">
+      {/* GAUGES + TABLE */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "320px 1fr",
+          gap: 20,
+          marginTop: 20
+        }}
+      >
+        <div style={{ display: "grid", gap: 20 }}>
+          <Gauge label="Avg Generator Speed" value={avgGeneratorRPM} max={2000} unit="RPM" color="#22c55e" />
+          <Gauge label="Avg Wind Speed" value={avgWindSpeed} max={30} unit="m/s" color="#2563eb" />
+        </div>
+
+        <div className="equal-card white w-90 ">
           <h6>User – Plant Details</h6>
-          <table className="table table-bordered table-striped">
+          <table className="table table-bordered table-sm">
             <thead>
               <tr>
                 <th>User ID</th>
@@ -519,12 +282,6 @@ const ClientDashboard = () => {
             </tbody>
           </table>
         </div>
-      </div>
-
-      {/* GAUGES */}
-      <div className="grid-2">
-        <Gauge label="Avg Generator Speed" value={avgGeneratorRPM} max={MAX_RPM} unit="RPM" color="#22c55e" />
-        <Gauge label="Avg Wind Speed" value={avgWindSpeed} max={MAX_WIND} unit="m/s" color="#2563eb" />
       </div>
     </div>
   );
