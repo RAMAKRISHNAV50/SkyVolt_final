@@ -1,4 +1,4 @@
-import { Link,NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   FaFacebookF,
   FaLinkedinIn,
@@ -22,17 +22,27 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* QUICK LINKS */}
         <div className="footer-links">
           <h3>Quick Links</h3>
-          <Link to="/">Home</Link>
-          <Link to="/about">About Us</Link>
-          <Link to="/contact">Contact Us</Link>
-          {/* <NavLink to="/">Home</NavLink>
-          <Link to="/about">About Us</Link>
-          <Link to="/contact">Contact Us</Link> */}
-        </div>
 
+          <NavLink to="/" 
+          onClick={() => window.scrollTo(0, 0)}
+          >
+            Home
+          </NavLink>
+
+          <NavLink to="/about"
+          onClick={() => window.scrollTo(0, 0)}
+          >
+            About Us
+          </NavLink>
+
+          <NavLink to="/contact"
+          onClick={() => window.scrollTo(0, 0)}
+          >
+            Contact Us
+          </NavLink>
+        </div>
         {/* CONTACT */}
         <div className="footer-contact">
           <h3>Contact</h3>

@@ -89,6 +89,7 @@ import ClientRoute from "./ClientRoute";
 
 function App() {
   return (
+    <>
     <Suspense fallback={<div style={{ padding: 30 }}>Loading...</div>}>
       <Navbar />
 
@@ -142,6 +143,7 @@ function App() {
 
       <Footer />
     </Suspense>
+    </>
   );
 }
 

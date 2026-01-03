@@ -133,18 +133,20 @@ const ClientDashboard = () => {
 
   /* ================= GAUGE ================= */
   const Gauge = ({ value, max, label, unit, color }) => (
-    <div className="equal-card white" style={{ height: 180 }}>
-      <h6 className="text-center mb-1">{label}</h6>
+    <>
+      <h6 className="text-center mb-2">{label}</h6>
 
-      <div style={{ height: 120, position: "relative" }}>
+      <div style={{ flex: 1, position: "relative" }}>
         <Doughnut
           data={{
-            datasets: [{
-              data: [value, Math.max(max - value, 0)],
-              backgroundColor: [color, "#e5e7eb"],
-              borderWidth: 0,
-              cutout: "65%"
-            }]
+            datasets: [
+              {
+                data: [value, Math.max(max - value, 0)],
+                backgroundColor: [color, "#e5e7eb"],
+                borderWidth: 0,
+                cutout: "65%"
+              }
+            ]
           }}
           options={{
             responsive: true,
@@ -158,7 +160,7 @@ const ClientDashboard = () => {
         <div
           style={{
             position: "absolute",
-            bottom: 10,
+            bottom: 12,
             left: "50%",
             transform: "translateX(-50%)",
             fontWeight: 600
@@ -167,8 +169,9 @@ const ClientDashboard = () => {
           {value} {unit}
         </div>
       </div>
-    </div>
+    </>
   );
+
 
   return (
     <div className="dashboard-wrapper">
@@ -197,18 +200,114 @@ const ClientDashboard = () => {
           <b>₹ {kpis.cost.toFixed(2)}</b>
         </div>
       </div>
-
-
-      {/* CHARTS */}
-      <div className="grid-3">
-        <div className="equal-card white">
+      {/* ================= ROW 1 ================= */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "2fr 1fr 1fr",
+          gap: 20,
+          marginTop: 20
+        }}
+      >
+        {/* LINE CHART */}
+        <div className="equal-card white equal-height-card">
           <h6>TPC & Power Loss by Sector</h6>
-          <Line
+
+          <div style={{ flex: 1 }}>
+            <Line
+              data={{
+                labels: Object.keys(tpcLossBySector),
+                datasets: [
+                  {
+                    label: "TPC",
+                    data: Object.values(tpcLossBySector).map(d => d.tpc),
+                    borderColor: "#2563eb"
+                  },
+                  {
+                    label: "Loss",
+                    data: Object.values(tpcLossBySector).map(d => d.loss),
+                    borderColor: "#ef4444"
+                  }
+                ]
+              }}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false
+              }}
+            />
+          </div>
+        </div>
+
+        {/* GAUGE 1 */}
+        <div className="equal-card white equal-height-card">
+          <Gauge
+            label="Avg Generator Speed"
+            value={avgGeneratorRPM}
+            max={2000}
+            unit="RPM"
+            color="#22c55e"
+          />
+        </div>
+
+        {/* GAUGE 2 */}
+        <div className="equal-card white equal-height-card">
+          <Gauge
+            label="Avg Wind Speed"
+            value={avgWindSpeed}
+            max={30}
+            unit="m/s"
+            color="#2563eb"
+          />
+        </div>
+      </div>
+
+      {/* ================= ROW 2 ================= */}
+      <div className="equal-card white" style={{ marginTop: 20, padding: 12 }}>
+        <h6>User – Plant Details</h6>
+
+        <table className="table table-bordered table-sm mb-0">
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>User Name</th>
+              <th>Plant Name(s)</th>
+              <th>City</th>
+              <th>State</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((d, i) => (
+              <tr key={i}>
+                <td>{d.userId}</td>
+                <td>{d.userName}</td>
+                <td>{d.plantNames}</td>
+                <td>{d.city}</td>
+                <td>{d.state}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {/* ================= ROW 3 ================= */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 20,
+          marginTop: 20
+        }}
+      >
+        <div className="equal-card white">
+          <h6>Avg Power Output by Sector</h6>
+          <Bar
             data={{
-              labels: Object.keys(tpcLossBySector),
+              labels: avgPowerBySector.map(d => d.sector),
               datasets: [
-                { label: "TPC", data: Object.values(tpcLossBySector).map(d => d.tpc), borderColor: "#2563eb" },
-                { label: "Loss", data: Object.values(tpcLossBySector).map(d => d.loss), borderColor: "#ef4444" }
+                {
+                  label: "Avg Power (kW)",
+                  data: avgPowerBySector.map(d => d.avg),
+                  backgroundColor: "#22c55e"
+                }
               ]
             }}
           />
@@ -219,70 +318,20 @@ const ClientDashboard = () => {
           <Bar
             data={{
               labels: Object.keys(windDirectionTurbines),
-              datasets: [{
-                label: "Turbines",
-                data: Object.values(windDirectionTurbines),
-                backgroundColor: "#38bdf8"
-              }]
-            }}
-          />
-        </div>
-
-        <div className="equal-card white">
-          <h6>Avg Power Output by Sector</h6>
-          <Bar
-            data={{
-              labels: avgPowerBySector.map(d => d.sector),
-              datasets: [{
-                label: "Avg Power (kW)",
-                data: avgPowerBySector.map(d => d.avg),
-                backgroundColor: "#22c55e"
-              }]
+              datasets: [
+                {
+                  label: "Turbines",
+                  data: Object.values(windDirectionTurbines),
+                  backgroundColor: "#38bdf8"
+                }
+              ]
             }}
           />
         </div>
       </div>
 
-      {/* GAUGES + TABLE */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "320px 1fr",
-          gap: 20,
-          marginTop: 20
-        }}
-      >
-        <div style={{ display: "grid", gap: 20 }}>
-          <Gauge label="Avg Generator Speed" value={avgGeneratorRPM} max={2000} unit="RPM" color="#22c55e" />
-          <Gauge label="Avg Wind Speed" value={avgWindSpeed} max={30} unit="m/s" color="#2563eb" />
-        </div>
 
-        <div className="equal-card white w-90 ">
-          <h6>User – Plant Details</h6>
-          <table className="table table-bordered table-sm">
-            <thead>
-              <tr>
-                <th>User ID</th>
-                <th>User Name</th>
-                <th>Plant Name(s)</th>
-                <th>City</th>
-                <th>State</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tableData.map((d, i) => (
-                <tr key={i}>
-                  <td>{d.userId}</td>
-                  <td>{d.userName}</td>
-                  <td>{d.plantNames}</td>
-                  <td>{d.city}</td>
-                  <td>{d.state}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+
     </div>
   );
 };
