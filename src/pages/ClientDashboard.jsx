@@ -42,13 +42,17 @@ const ClientDashboard = () => {
     const powerPerTurbine =
       userData.reduce((s, d) => s + (+d["power_per_turbine(KW)"] || 0), 0);
 
+    const installationCost =
+      userData.reduce((s, d) => s + (+d.installation_price_lakhs || 0), 0);
+
     return {
       powerPerTurbine,
       totalPower: userData.reduce((s, d) => s + (+d.Power_Output_kW || 0), 0),
       totalTurbines: userData.reduce((s, d) => s + (+d.no_turbine || 0), 0),
-      cost: powerPerTurbine * 3.4 // ✅ NEW KPI
+      installationCost
     };
   }, [userData]);
+
 
 
   /* ================= GAUGE VALUES ================= */
@@ -196,9 +200,10 @@ const ClientDashboard = () => {
 
         {/* ✅ NEW KPI CARD */}
         <div className="equal-card green">
-          <p>Cost(per single turbine)</p>
-          <b>₹ {kpis.cost.toFixed(2)}</b>
+          <p>Installation Cost (₹ Lakhs)</p>
+          <b>₹ {kpis.installationCost.toFixed(2)}</b>
         </div>
+
       </div>
       {/* ================= ROW 1 ================= */}
       <div
