@@ -38,6 +38,7 @@ const ClientDashboard = () => {
   );
 
   /* ================= KPI ================= */
+  /* ================= KPI ================= */
   const kpis = useMemo(() => {
     const powerPerTurbine =
       userData.reduce((s, d) => s + (+d["power_per_turbine(KW)"] || 0), 0);
@@ -45,14 +46,19 @@ const ClientDashboard = () => {
     const installationCost =
       userData.reduce((s, d) => s + (+d.installation_price_lakhs || 0), 0);
 
+    const totalPower =
+      userData.reduce((s, d) => s + (+d.Power_Output_kW || 0), 0);
+
+    const totalPowerValueRupees = totalPower * 3.44; // ✅ ₹ per kW
+
     return {
       powerPerTurbine,
-      totalPower: userData.reduce((s, d) => s + (+d.Power_Output_kW || 0), 0),
+      totalPower,
       totalTurbines: userData.reduce((s, d) => s + (+d.no_turbine || 0), 0),
-      installationCost
+      installationCost,
+      totalPowerValueRupees // ✅ NEW KPI
     };
   }, [userData]);
-
 
 
   /* ================= GAUGE VALUES ================= */
@@ -189,8 +195,8 @@ const ClientDashboard = () => {
         </div>
 
         <div className="equal-card orange">
-          <p>Total Power(all turbines)</p>
-          <b>{kpis.totalPower.toFixed(2)}</b>
+          <p>Total Power(all turbines)KW</p>
+          <b>{kpis.totalPower.toFixed(2)} </b>
         </div>
 
         <div className="equal-card red">
@@ -203,6 +209,12 @@ const ClientDashboard = () => {
           <p>Installation Cost (₹ Lakhs)</p>
           <b>₹ {kpis.installationCost.toFixed(2)}</b>
         </div>
+
+        <div className="equal-card blue">
+          <p>Total Power Value (₹ @ 3.44/kW)</p>
+          <b>₹ {kpis.totalPowerValueRupees.toFixed(2)}</b>
+        </div>
+
 
       </div>
       {/* ================= ROW 1 ================= */}
