@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <div className="home-page">
 
@@ -58,13 +60,25 @@ const Home = () => {
               <div className="col-md-6 col-lg-4" key={index}>
                 <div className="energy-card">
                   <img src={item.img} alt={item.title} />
-                  <div className="energy-card-body">
+
+                  <div className="energy-card-body text-center">
                     <h5>{item.title}</h5>
                     <p>{item.desc}</p>
+
+                    {/* ✅ PRODUCTS BUTTON ONLY FOR WIND ENERGY */}
+                    {item.title === "Wind Energy" && (
+                      <button
+                        onClick={() => navigate("/products")}
+                        className="mt-3 px-4 py-2 bg-green-600 text-green rounded hover:bg-green-700"
+                      >
+                        View Products
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
             ))}
+
           </div>
         </div>
       </section>
