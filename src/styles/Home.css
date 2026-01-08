@@ -164,3 +164,91 @@
   }
 }
 
+/* ===============================
+   WIND ENERGY CARD (HOME PAGE)
+================================ */
+.energy-card {
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: all 0.35s ease;
+  border: 1px solid #e5e7eb;
+}
+
+.energy-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.energy-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Wind-specific styling */
+.wind-card {
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.08),
+    rgba(59, 130, 246, 0.08)
+  );
+  position: relative;
+}
+
+.wind-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(34, 197, 94, 0.15),
+    rgba(22, 163, 74, 0.15)
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.wind-card:hover::before {
+  opacity: 1;
+}
+
+.wind-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.18);
+}
+
+/* Card body */
+.energy-card-body {
+  padding: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Wind points */
+.wind-points {
+  list-style: none;
+  padding-left: 0;
+}
+
+.wind-points li {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  transition: transform 0.2s ease;
+}
+
+.wind-points li:hover {
+  transform: translateX(6px);
+}
+
+/* Button enhancement */
+.wind-card .btn-success {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.wind-card .btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(22, 163, 74, 0.35);
+}

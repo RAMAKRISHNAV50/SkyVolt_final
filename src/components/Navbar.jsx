@@ -33,7 +33,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg skyvolt-navbar px-3 shadow-sm">
+    <nav className="navbar navbar-expand-lg navbar-dark skyvolt-navbar px-3 shadow-sm">
+
       {/* LOGO */}
       <NavLink to="/" className="navbar-brand d-flex align-items-center gap-2">
         <img src={logo} alt="logo" className="skyvolt-logo" />
@@ -64,6 +65,9 @@ const Navbar = () => {
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to="/contact">Contact</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/wind">why wind</NavLink>
           </li>
 
           {/* ADMIN LINKS */}

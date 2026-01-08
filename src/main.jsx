@@ -16,6 +16,10 @@ import "./styles/footer.css";
 import "./styles/PricingPlans.css"
 import "./styles/EditProfile.css"
 import "./styles/ClientDashboard.css"
+import "./styles/products.css"
+import "./styles/Cart.css";
+import "./styles/Checkout.css";
+import "./styles/WindEnergyPage.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 

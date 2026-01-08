@@ -119,13 +119,13 @@ import ResetPassword from "./pages/ResetPassword";
 import AccessDenied from "./pages/AccessDenied";
 import PricingPlans from "./Client/PricingPlans";
 import ClientRoute from "./ClientRoute";
-
+import WindEnergyPage from "./pages/WindEnergyPage";
 function App() {
   return (
     <Suspense fallback={<div style={{ padding: 30 }}>Loading...</div>}>
+
       <CartProvider>
         <Navbar />
-
         <Routes>
           {/* ================= PUBLIC ROUTES ================= */}
           <Route path="/" element={<Home />} />
@@ -137,6 +137,7 @@ function App() {
           <Route path="/verify-otp" element={<VerifyOtp />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/pricing" element={<PricingPlans />} />
+          <Route path="/wind" element={<WindEnergyPage />} />
 
           {/* ================= E-COMMERCE ROUTES ================= */}
           <Route path="/products" element={<Products />} />

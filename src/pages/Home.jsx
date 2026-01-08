@@ -26,62 +26,48 @@ const Home = () => {
         <div className="container">
           <div className="section-header text-center">
             <h2>Renewable Energy Sources</h2>
-            <p className="mb-2">Major types of renewable energy used worldwide</p>
+            <p className="mb-2">Highlighted renewable energy solution</p>
           </div>
 
-          <div className="row g-4">
-            {[
-              {
-                title: "Solar Energy",
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6kIWgvRaKC16WuWJBnJQjun7jIzlfRObV_A&s",
-                desc: "Uses sunlight to generate electricity through solar panels."
-              },
-              {
-                title: "Wind Energy",
-                img: "https://earth.org/wp-content/uploads/2022/06/Untitled-1024-%C3%97-683px-13-1200x675.jpg",
-                desc: "Converts wind movement into electricity using turbines."
-              },
-              {
-                title: "Hydro Energy",
-                img: "https://kyyekxqg.cdn.imgeng.in/wp-content/uploads/hydro-power-infographic.png",
-                desc: "Generates power from flowing or stored water."
-              },
-              {
-                title: "Biomass Energy",
-                img: "https://www.mdpi.com/energies/energies-16-01783/article_deploy/html/images/energies-16-01783-g001.png",
-                desc: "Produces energy from organic materials and waste."
-              },
-              {
-                title: "Geothermal Energy",
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7gcUkoELdr0ylnnMK89T-qu6x8yzHwySUwQ&s",
-                desc: "Uses heat from inside the Earth to generate power."
-              }
-            ].map((item, index) => (
-              <div className="col-md-6 col-lg-4" key={index}>
-                <div className="energy-card">
-                  <img src={item.img} alt={item.title} />
+          <div className="row justify-content-center">
+            <div className="col-md-8 col-lg-6">
+              <div className="energy-card wind-card shadow-lg">
+                <img
+                  src="https://earth.org/wp-content/uploads/2022/06/Untitled-1024-%C3%97-683px-13-1200x675.jpg"
+                  alt="Wind Energy"
+                />
 
-                  <div className="energy-card-body text-center">
-                    <h5>{item.title}</h5>
-                    <p>{item.desc}</p>
+                <div className="energy-card-body text-center">
+                  <h4 className="fw-bold mb-2">Wind Energy</h4>
 
-                    {/* ✅ PRODUCTS BUTTON ONLY FOR WIND ENERGY */}
-                    {item.title === "Wind Energy" && (
-                      <button
-                        onClick={() => navigate("/products")}
-                        className="mt-3 px-4 py-2 bg-green-600 text-green rounded hover:bg-green-700"
-                      >
-                        View Products
-                      </button>
-                    )}
-                  </div>
+                  <p className="text-muted">
+                    Wind energy converts the kinetic energy of wind into electricity
+                    using wind turbines. It is one of the fastest-growing and most
+                    cost-effective renewable energy sources.
+                  </p>
+
+                  <ul className="wind-points text-start mt-3">
+                    <li>🌬️ No fuel cost – wind is naturally available</li>
+                    <li>💰 Low operating & maintenance cost</li>
+                    <li>🌱 Very low CO₂ emissions</li>
+                    <li>📈 High long-term return on investment</li>
+                    <li>⚡ Suitable for small to large-scale power generation</li>
+                  </ul>
+
+                  <button
+                    onClick={() => navigate("/products")}
+                    className="btn btn-success mt-4 px-4 py-2 fw-semibold"
+                  >
+                    View Wind Products
+                  </button>
                 </div>
               </div>
-            ))}
-
+            </div>
           </div>
+
         </div>
       </section>
+
 
       {/* ================= SECTION 3: MORE INFO ================= */}
       <section className="section">

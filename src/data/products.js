@@ -3,7 +3,7 @@ const products = [
     id: 1,
     name: "Wind Turbine",
     price: 120000,
-    img: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Wind_turbine.jpg"
+    img: "https://i.pinimg.com/736x/1a/28/7e/1a287ebfaae43eb3278408d504013c4a.jpg"
   },
   {
     id: 2,
