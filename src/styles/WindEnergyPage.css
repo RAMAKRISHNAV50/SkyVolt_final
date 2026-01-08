@@ -47,9 +47,11 @@ p {
 
 .text-success {
   background: linear-gradient(90deg, #22c55e, #16a34a);
+  background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
+
 
 /* Pills under hero */
 .badge.rounded-pill {
