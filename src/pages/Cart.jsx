@@ -300,8 +300,8 @@ const Cart = () => {
           onChange={(e) => setInstallerCost(Number(e.target.value))}
         >
           <option value={0}>Self Installation (₹0)</option>
-          <option value={200000}>
-            Professional Installation (₹2,00,000)
+          <option value={60000}>
+            Professional Installation (60,000)
           </option>
         </select>
       </div>

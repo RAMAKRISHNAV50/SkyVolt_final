@@ -9,19 +9,19 @@ const products = [
     id: 2,
     name: "Tower Structure",
     price: 80000,
-    img: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Wind_turbine_tower.jpg"
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBunxPiTJ1ehyKxrMamjtNwPIcoJc8wvwwaQ&s"
   },
   {
     id: 3,
     name: "Power Inverter",
     price: 45000,
-    img: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Inverter.jpg"
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_voj0QIRAyM_ELN5IcqF8MFayIUMx0QF6DQ&s"
   },
   {
     id: 4,
     name: "Controller Unit",
     price: 30000,
-    img: "https://upload.wikimedia.org/wikipedia/commons/f/f0/Electrical_control_panel.jpg"
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcHhC-LZhxgeiHEt8HTcnFqc8NYGJ_GEPTog&s"
   }
 ];
 
