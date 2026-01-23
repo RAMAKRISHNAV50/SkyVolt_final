@@ -222,32 +222,32 @@ export default function WindEnergyPage() {
   const [mw, setMw] = useState(5); // plant size
   const [tariff, setTariff] = useState(5.5); // ₹ / kWh
   const navigate = useNavigate();
-  
 
-const downloadWindReport = () => {
-  const doc = new jsPDF();
 
-  // Title
-  doc.setFontSize(18);
-  doc.text("Wind Energy Report", 14, 20);
+  const downloadWindReport = () => {
+    const doc = new jsPDF();
 
-  // Table
-  autoTable(doc, {
-    startY: 35,
-    head: [["Parameter", "Details"]],
-    body: [
-      ["Energy Type", "Wind Energy"],
-      ["Capacity Factor", "35%"],
-      ["CAPEX", "₹ 6.5 Crore / MW"],
-      ["OPEX", "₹ 0.28 Crore / MW / Year"],
-      ["Fuel Cost", "Nil (Wind is free)"],
-      ["Plant Life", "20–25 Years"],
-      ["CO₂ Emissions", "Very Low"]
-    ]
-  });
+    // Title
+    doc.setFontSize(18);
+    doc.text("Wind Energy Report", 14, 20);
 
-  doc.save("Wind_Energy_Report.pdf");
-};
+    // Table
+    autoTable(doc, {
+      startY: 35,
+      head: [["Parameter", "Details"]],
+      body: [
+        ["Energy Type", "Wind Energy"],
+        ["Capacity Factor", "35%"],
+        ["CAPEX", "₹ 6.5 Crore / MW"],
+        ["OPEX", "₹ 0.28 Crore / MW / Year"],
+        ["Fuel Cost", "Nil (Wind is free)"],
+        ["Plant Life", "20–25 Years"],
+        ["CO₂ Emissions", "Very Low"]
+      ]
+    });
+
+    doc.save("Wind_Energy_Report.pdf");
+  };
 
 
   const leftItem = ENERGY.find((e) => e.key === left) || ENERGY[0];
@@ -273,9 +273,9 @@ const downloadWindReport = () => {
           ],
           backgroundColor: [
             "rgba(34,197,94,0.85)",   // Revenue - Green
-            "rgba(239,68,68,0.85)",   // OPEX - Red
-            "rgba(59,130,246,0.85)",  // Profit - Blue
-            "rgba(168,85,247,0.85)"   // CAPEX - Purple
+            "rgba(34,197,94,0.85)",   // OPEX - Red
+            "rgba(34,197,94,0.85)",  // Profit - Blue
+            "rgba(34,197,94,0.85)"   // CAPEX - Purple
           ],
           borderRadius: 10,
           barThickness: 34
@@ -290,9 +290,9 @@ const downloadWindReport = () => {
           ],
           backgroundColor: [
             "rgba(22,163,74,0.55)",
-            "rgba(220,38,38,0.55)",
-            "rgba(37,99,235,0.55)",
-            "rgba(147,51,234,0.55)"
+            "rgba(22,163,74,0.55)",
+            "rgba(22,163,74,0.55)",
+            "rgba(22,163,74,0.55)"
           ],
           borderRadius: 10,
           barThickness: 34
@@ -354,6 +354,19 @@ const downloadWindReport = () => {
 
   const better = leftCalc.profit > rightCalc.profit ? leftItem : rightItem;
   const profitGapCr = Math.abs(leftCalc.profit - rightCalc.profit) / 1e7;
+
+  // Option A: Only Wind
+  const optionAList = useMemo(
+    () => ENERGY.filter(e => e.key === "wind"),
+    []
+  );
+
+  // Option B: All except Wind
+  const optionBList = useMemo(
+    () => ENERGY.filter(e => e.key !== "wind"),
+    []
+  );
+
 
   return (
     <div className="bg-slate-50">
@@ -560,13 +573,18 @@ const downloadWindReport = () => {
                 <div className="row g-2 mt-2">
                   <div className="col-12">
                     <label className="form-label mb-1">Option A</label>
-                    <select className="form-select" value={left} onChange={(e) => setLeft(e.target.value)}>
-                      {ENERGY.map((e) => (
+                    <select
+                      className="form-select"
+                      value={left}
+                      disabled   // Wind is fixed
+                    >
+                      {optionAList.map(e => (
                         <option key={e.key} value={e.key}>
                           {e.name}
                         </option>
                       ))}
                     </select>
+
                   </div>
 
                   <div className="col-12">
@@ -578,6 +596,7 @@ const downloadWindReport = () => {
                         </option>
                       ))}
                     </select>
+
                   </div>
                 </div>
 

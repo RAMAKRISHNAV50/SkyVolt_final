@@ -3,13 +3,13 @@ const products = [
     id: 1,
     name: "Wind Turbine",
     price: 120000,
-    img: "https://i.pinimg.com/736x/1a/28/7e/1a287ebfaae43eb3278408d504013c4a.jpg"
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBunxPiTJ1ehyKxrMamjtNwPIcoJc8wvwwaQ&s"
   },
   {
     id: 2,
     name: "Tower Structure",
     price: 80000,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBunxPiTJ1ehyKxrMamjtNwPIcoJc8wvwwaQ&s"
+    img: "https://thumbs.dreamstime.com/b/clean-wind-energy-construction-windmill-production-renewable-219085736.jpg"
   },
   {
     id: 3,

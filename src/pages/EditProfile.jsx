@@ -41,7 +41,7 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="edit-profile-page">
+    <div className="edit-profile-page mt-5 mb-5">
       <div className="edit-profile-card">
         <h2>Edit Profile</h2>
 

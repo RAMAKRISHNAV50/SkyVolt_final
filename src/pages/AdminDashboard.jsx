@@ -128,25 +128,35 @@ const AdminDashboard = () => {
 
   /* ================= TABLE ================= */
   const users = useMemo(() => {
-    const source = plantFilter
-      ? windSensorData.filter(d => d.plant_id === plantFilter)
-      : windSensorData;
+  const source = plantFilter
+    ? windSensorData.filter(d => d.plant_id === plantFilter)
+    : windSensorData;
 
-    const map = {};
-    source.forEach(d => {
-      if (!map[d.User_ID]) {
-        map[d.User_ID] = { name: d.User_Name, sum: 0, count: 0 };
-      }
-      map[d.User_ID].sum += d.selling_price_lakhs || 0;
-      map[d.User_ID].count++;
-    });
+  const map = {};
 
-    return Object.entries(map).map(([id, v]) => ({
-      id,
-      name: v.name,
-      avg: (v.sum / v.count).toFixed(2)
-    }));
-  }, [plantFilter]);
+  source.forEach(d => {
+    if (!map[d.User_ID]) {
+      map[d.User_ID] = {
+        name: d.User_Name,
+        city: d.City,
+        state: d.State,
+        sum: 0,
+        count: 0
+      };
+    }
+    map[d.User_ID].sum += d.selling_price_lakhs || 0;
+    map[d.User_ID].count++;
+  });
+
+  return Object.entries(map).map(([id, v]) => ({
+    id,
+    name: v.name,
+    city: v.city,
+    state: v.state,
+    avg: (v.sum / v.count).toFixed(2)
+  }));
+}, [plantFilter]);
+
 
   /* ================= OPTIONS ================= */
   const stateOptions = [...new Set(windSensorData.map(d => d.State))]
@@ -321,7 +331,9 @@ const AdminDashboard = () => {
                 <tr>
                   <th>User ID</th>
                   <th>User Name</th>
-                  <th>Avg Selling Cost (Lakhs)</th>
+                  <th>City</th>
+                  <th>State</th>
+                  <th> Selling Cost (Lakhs)</th>
                 </tr>
               </thead>
               <tbody>
@@ -329,6 +341,8 @@ const AdminDashboard = () => {
                   <tr key={u.id} onClick={() => setUserFilter(u.id)}>
                     <td>{u.id}</td>
                     <td>{u.name}</td>
+                    <td>{u.city}</td>
+                    <td>{u.state}</td>
                     <td>{u.avg}</td>
                   </tr>
                 ))}
