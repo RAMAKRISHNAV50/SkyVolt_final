@@ -154,7 +154,7 @@ const userOptions = useMemo(() => {
 
   /* ================= PIE TOOLTIP HELPERS ================= */
 
-  // Get unique years (from filtered data)
+  
   const installationYears = [
     ...new Set(filtered.map(d => d.installation_year))
   ].join(", ");
