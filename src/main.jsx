@@ -11,7 +11,7 @@ import "./styles/Home.css";
 import "./styles/Contact.css";
 import "./styles/Login.css";
 import "./styles/Navbar.css";
-import "./styles/admindashboard.css";
+import "./styles/adminDashboard.css"
 import "./styles/footer.css";
 import "./styles/PricingPlans.css"
 import "./styles/EditProfile.css"

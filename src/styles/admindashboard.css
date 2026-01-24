@@ -1,67 +1,97 @@
+/* ================= ROOT DASHBOARD ================= */
 .dashboard {
   background: #f8fafc;
   min-height: 100vh;
   padding: 16px;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
-/* TITLE */
+/* ================= TITLE ================= */
 .dashboard-title {
   background: linear-gradient(90deg, #2563eb, #38bdf8);
-  color: white;
+  color: #ffffff !important;
   padding: 14px;
   border-radius: 12px;
   text-align: center;
   margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
-/* KPI CARDS */
+/* ================= KPI CARDS ================= */
 .kpi-card {
-  height: 130px;
+  padding: 14px 16px;
   border-radius: 16px;
-  color: white;
+  color: #fffffffb !important;
+  min-height: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: transform 0.3s;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .kpi-card:hover {
   transform: translateY(-6px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
 }
 
+.kpi-card h6 {
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #ffffff !important;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.kpi-card h3 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0;
+}
+
+
+/* ================= KPI COLORS ================= */
 .kpi-blue {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  background: linear-gradient(135deg, #3b82f6, #2563eb)!important;
 }
 
 .kpi-green {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
+  background: linear-gradient(135deg, #22c55e, #16a34a)!important;
 }
 
 .kpi-orange {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
+  background: linear-gradient(135deg, #f59e0b, #d97706)!important;
 }
+
 .kpi-purple {
-  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  background: linear-gradient(135deg, #a855f7, #7c3aed)!important;
 }
 
 .kpi-teal {
-  background: linear-gradient(135deg, #14b8a6, #0f766e);
+  background: linear-gradient(135deg, #14b8a6, #0f766e)!important;
 }
 
 .kpi-red {
-  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  background: linear-gradient(135deg, #ef4444, #b91c1c)!important;
 }
 
+.kpi-indigo {
+  background: linear-gradient(135deg, #6366f1, #4338ca)!important;
+}
 
-/* TABLE */
+/* ================= TABLE ================= */
 .table-card {
-  border-radius: 14px;
+  border-radius: 16px;
+  padding: 12px;
+  background: #ffffff;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
 }
 
 .table-wrapper {
-  height: 40vh;
+  max-height: 40vh;
   overflow-y: auto;
 }
 
@@ -69,50 +99,40 @@
   position: sticky;
   top: 0;
   background: #0f172a;
-  color: white;
+  color: #ffffff;
+  z-index: 1;
 }
 
-/* CHARTS */
+/* ================= CHARTS ================= */
 .chart-card {
-  background: white;
+  background: #ffffff;
   padding: 16px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  height: 400px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  height: 420px;
+  display: flex;
+  flex-direction: column;
 }
 
+.chart-card h5 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Fix Chart.js canvas overflow */
 canvas {
   max-height: 100% !important;
 }
 
-/* Compact KPI cards */
-.kpi-card {
-  padding: 12px 14px;          /* reduced padding */
-  border-radius: 10px;
-  color: #fff;
-  text-align: center;
-  min-height: 95px;            /* reduced height */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-.kpi-card h6 {
-  font-size: 12px;
-  margin-bottom: 4px;
+/* ================= FILTERS ================= */
+.form-label {
   font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 4px;
 }
 
-.kpi-card h3 {
-  font-size: 18px;             /* smaller number */
-  margin: 0;
-  font-weight: 700;
-}
-
-.kpi-card small {
-  font-size: 10px;
-  opacity: 0.85;
-}
-
-/* New color for Type 4 */
-.kpi-indigo {
-  background: linear-gradient(135deg, #6366f1, #4338ca);
+.form-select {
+  border-radius: 10px;
+  font-size: 14px;
 }

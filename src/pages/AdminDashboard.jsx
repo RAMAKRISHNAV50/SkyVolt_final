@@ -264,15 +264,13 @@ const userOptions = useMemo(() => {
   </div>
 
 </div>
-
-
       {/* ================= KPI CARDS ================= */}
 
       {/* ROW 1 – 4 CARDS */}
       <div className="row g-3 mb-3">
 
-        <div className="col-lg-3 col-md-6">
-          <div className="kpi-card kpi-blue">
+        <div className="col-lg-3 col-md-6 ">
+          <div className="kpi-card kpi-blue ">
             <h6>Total Plants</h6>
             <h3>{totalPlants}</h3>
           </div>
