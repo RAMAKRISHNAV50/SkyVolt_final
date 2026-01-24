@@ -7,7 +7,7 @@ import { AuthProvider } from "./auth/AuthContext";
 
 import "./index.css";
 import "./styles/About.css";
-import "./styles/admindashboard.css"
+import "./styles/AdminDashboard.css";
 import "./styles/Home.css";
 import "./styles/Contact.css";
 import "./styles/Login.css";
