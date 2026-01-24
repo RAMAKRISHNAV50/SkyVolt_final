@@ -19,7 +19,7 @@ import "./styles/Products.css"
 import "./styles/Cart.css";
 import "./styles/Checkout.css";
 import "./styles/WindEnergyPage.css"
-import "./styles/adminDashboard.css"
+import "./styles/AdminDashboard.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
