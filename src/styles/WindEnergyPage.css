@@ -1,0 +1,299 @@
+/* ===============================
+   GLOBAL PAGE STYLES
+================================ */
+.bg-slate-50 {
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===============================
+   TYPOGRAPHY
+================================ */
+h1, h2, h3, h4 {
+  letter-spacing: -0.3px;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* ===============================
+   CARD BASE STYLE
+================================ */
+.card,
+.rounded-4,
+.rounded-3 {
+  transition: all 0.3s ease;
+}
+
+/* Hover lift effect */
+.card:hover,
+.rounded-4:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ===============================
+   HERO SECTION
+================================ */
+.display-5 {
+  font-weight: 800;
+}
+
+.text-success {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+
+/* Pills under hero */
+.badge.rounded-pill {
+  padding: 8px 14px;
+  font-weight: 500;
+}
+
+/* ===============================
+   SVG CONTAINERS
+================================ */
+svg {
+  max-width: 100%;
+}
+
+svg:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+/* ===============================
+   INFO CARDS (WHY / BENEFITS)
+================================ */
+.container .rounded-4.border.bg-white.p-3 {
+  cursor: default;
+}
+
+.container .rounded-4.border.bg-white.p-3:hover {
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+}
+
+/* ===============================
+   STAT PILLS
+================================ */
+.stat-pill,
+.rounded-3.border.bg-white.p-3 {
+  transition: all 0.25s ease;
+}
+
+.stat-pill:hover,
+.rounded-3.border.bg-white.p-3:hover {
+  border-color: #22c55e;
+  background: #f0fdf4;
+}
+
+/* Value emphasis */
+.fs-5.fw-bold {
+  color: #16a34a;
+}
+
+/* ===============================
+   INPUT PANEL
+================================ */
+.form-range::-webkit-slider-thumb {
+  background-color: #16a34a;
+}
+
+.form-range::-moz-range-thumb {
+  background-color: #16a34a;
+}
+
+.form-select:focus,
+.form-range:focus {
+  box-shadow: 0 0 0 0.15rem rgba(34, 197, 94, 0.25);
+  border-color: #22c55e;
+}
+
+/* ===============================
+   COMPARISON CARDS
+================================ */
+.col-md-6 .rounded-4.border.p-3.h-100 {
+  transition: all 0.3s ease;
+}
+
+.col-md-6 .rounded-4.border.p-3.h-100:hover {
+  transform: translateY(-4px);
+  border-color: #22c55e;
+}
+
+/* Badge style */
+.badge.text-bg-success {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+.badge.text-bg-secondary {
+  background: #64748b;
+}
+
+/* ===============================
+   CHART CONTAINER
+================================ */
+.chart-container,
+.mt-3.rounded-4.border.p-3 {
+  background: linear-gradient(180deg, #ffffff, #f1f5f9);
+  transition: all 0.3s ease;
+}
+
+.chart-container:hover,
+.mt-3.rounded-4.border.p-3:hover {
+  transform: translateY(-4px);
+}
+
+/* ===============================
+   RESULT HIGHLIGHT
+================================ */
+.bg-success-subtle {
+  background: linear-gradient(90deg, #ecfdf5, #f0fdf4);
+  border-left: 6px solid #22c55e;
+}
+
+/* ===============================
+   BUTTONS
+================================ */
+.btn {
+  transition: all 0.25s ease;
+}
+
+.btn-success {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  border: none;
+}
+
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(22, 163, 74, 0.35);
+}
+
+.btn-outline-secondary:hover {
+  background-color: #f1f5f9;
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   FOOTER CTA
+================================ */
+.container.pb-5 .rounded-4.border.bg-white.shadow-sm {
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+}
+
+/* ===============================
+   LISTS
+================================ */
+.list-group-item {
+  transition: background-color 0.2s ease;
+}
+
+.list-group-item:hover {
+  background-color: #f0fdf4;
+}
+
+/* ===============================
+   FADE-IN ANIMATION
+================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container,
+section {
+  animation: fadeInUp 0.6s ease both;
+}
+
+/* ===============================
+   RESPONSIVE TWEAKS
+================================ */
+@media (max-width: 768px) {
+  .display-5 {
+    font-size: 2.2rem;
+  }
+
+  .fs-5 {
+    font-size: 1rem;
+  }
+}
+
+/* ===============================
+   CHART CARD STYLES
+================================ */
+.chart-card {
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.chart-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+}
+
+/* Chart title */
+.chart-title {
+  font-size: 1.1rem;
+  letter-spacing: 0.3px;
+}
+
+/* ===============================
+   BAR COLOR LEGEND HELP
+================================ */
+.chart-legend-hint {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.chart-legend-hint span {
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chart-legend-hint i {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+/* ===============================
+   BAR ANIMATION SMOOTHING
+================================ */
+canvas {
+  transition: all 0.4s ease;
+}
+
+/* CTA Card */
+.cta-card {
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.08),
+    rgba(59, 130, 246, 0.08)
+  );
+  transition: all 0.35s ease;
+}
+
+.cta-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+}
