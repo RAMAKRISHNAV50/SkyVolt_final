@@ -474,7 +474,7 @@ const buildProductLineData = (productKey) => {
       <div className="row mt-3">
         <div className="col-md-4">
           <div className="kpi-card">
-            <h6>Average of Total Cost</h6>
+            <h5> Total Cost</h5>
             <h2>{avgTotalCostMillions} M</h2>
           </div>
         </div>

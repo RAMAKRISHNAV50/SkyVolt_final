@@ -11,7 +11,6 @@ import "./styles/Home.css";
 import "./styles/Contact.css";
 import "./styles/Login.css";
 import "./styles/Navbar.css";
-import "./styles/adminDashboard.css";
 import "./styles/footer.css";
 import "./styles/PricingPlans.css"
 import "./styles/EditProfile.css"
@@ -20,6 +19,7 @@ import "./styles/Products.css"
 import "./styles/Cart.css";
 import "./styles/Checkout.css";
 import "./styles/WindEnergyPage.css"
+import "./styles/adminDashboard.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 

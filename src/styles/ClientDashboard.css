@@ -13,9 +13,12 @@
   text-align: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+.kpi-card h5 {
+  color: #0872cf !important ;
+}
 
 .kpi-card h6 {
-  color: #6c757d;
+  color: #6c757d !important ;
 }
 
 .kpi-card h2 {
