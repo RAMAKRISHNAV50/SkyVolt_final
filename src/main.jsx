@@ -7,6 +7,7 @@ import { AuthProvider } from "./auth/AuthContext";
 
 import "./index.css";
 import "./styles/About.css";
+import "./styles/admindashbord.css"
 import "./styles/Home.css";
 import "./styles/Contact.css";
 import "./styles/Login.css";
@@ -19,7 +20,6 @@ import "./styles/Products.css"
 import "./styles/Cart.css";
 import "./styles/Checkout.css";
 import "./styles/WindEnergyPage.css"
-import "./styles/AdminDashboard.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
